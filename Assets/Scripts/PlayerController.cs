@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     public GameObject Projectile;
     public GameObject projectilePosition;
-    float fireInterval = .2f;
+    float fireInterval = .25f;
     float nextFire;
 
     void Awake()
@@ -35,12 +35,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         nextFire -= Time.deltaTime;
-        if(Input.GetKey(KeyCode.Space)) {
-            GameObject projectile = (GameObject)Instantiate(Projectile);
+        if(Input.GetKey(KeyCode.Space) && nextFire <= 0) {
+            GameObject projectile = (GameObject)Instantiate (Projectile);
             projectile.transform.position = projectilePosition.transform.position;
             nextFire = fireInterval;
         }
-
 
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
