@@ -6,6 +6,7 @@ public class ProjectileContoller : MonoBehaviour
 {
     float speed;
     public GameObject Explosion;
+    public GameObject Clash;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,17 @@ public class ProjectileContoller : MonoBehaviour
             PlayerStats.playerStats.UpdateScore();
         }
 
-        if(other.tag == "Enemy" || other.tag == "enemyProjectile")
+        if (other.tag == "enemyProjectile")
+        {
+            Vector2 expos = transform.position;
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+
+            GameObject clash = (GameObject)Instantiate(Clash);
+            clash.transform.position = expos;
+        }
+
+        if (other.tag == "Enemy")
         {
             Vector2 expos = transform.position;
             Destroy (gameObject);
@@ -42,7 +53,6 @@ public class ProjectileContoller : MonoBehaviour
 
             GameObject explosion = (GameObject)Instantiate(Explosion);
             explosion.transform.position = expos;
-
             }
         }
     }

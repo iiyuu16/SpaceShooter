@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     float fireInterval = .25f;
     float nextFire;
     public GameObject Explosion;
+    public GameObject Clash;
     void Awake()
     {
         if(playerController == null)
@@ -98,7 +99,15 @@ public class PlayerController : MonoBehaviour
 
             GameObject explosion = (GameObject)Instantiate(Explosion);
             explosion.transform.position = expos;
-
         }
+
+        if (other.tag == "enemyProjectile")
+        {
+            Vector2 expos = transform.position;
+
+            GameObject clash = (GameObject)Instantiate(Clash);
+            clash.transform.position = expos;
+        }
+
     }
 }
