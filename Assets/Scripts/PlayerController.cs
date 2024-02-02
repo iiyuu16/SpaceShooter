@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePosition;
     float fireInterval = .25f;
     float nextFire;
-
+    public GameObject Explosion;
     void Awake()
     {
         if(playerController == null)
@@ -54,30 +54,29 @@ public class PlayerController : MonoBehaviour
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
         Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
 
-        max.x = max.x - .5f;
-        min.x = min.x + .5f;
+        min.x = -6.78f;
+        max.x = 6.78f;
 
-        max.y = max.y - .5f;
-        min.y = min.y + .5f;
+        min.y = -4.4f;
+        max.y = 4.4f;
 
         Vector2 pos = transform.position;
         
         pos += direction * speed * Time.deltaTime;
+        pos.x = Mathf.Clamp(pos.x, min.x, max.x);
+        pos.y = Mathf.Clamp(pos.y, min.y, max.y);
 
         if (Input.GetKey(KeyCode.W))
         {
-            pos.x = Mathf.Clamp(pos.x, min.x, max.x);
             anim.SetInteger("up", 1);
         }
         else
         {
             anim.SetInteger("up", 0);
         }
-
         
         if(Input.GetKey(KeyCode.S))
         {
-            pos.y = Mathf.Clamp(pos.y, min.y, max.y);
             anim.SetInteger("down", -1);
         }
         else
@@ -87,5 +86,19 @@ public class PlayerController : MonoBehaviour
 
         transform.position = pos;
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Enemy" || other.tag == "enemyProjectile")
+        {
+            PlayerStats.playerStats.playerLife--;
+
+            Vector2 expos = transform.position;
+
+            GameObject explosion = (GameObject)Instantiate(Explosion);
+            explosion.transform.position = expos;
+
+        }
     }
 }

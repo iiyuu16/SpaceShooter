@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ProjectileContoller : MonoBehaviour
 {
-   float speed;
+    float speed;
+    public GameObject Explosion;
 
     // Start is called before the first frame update
     void Start()
@@ -25,4 +26,23 @@ public class ProjectileContoller : MonoBehaviour
             Destroy(gameObject);
         }
     }
-}
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Enemy")
+        {
+            PlayerStats.playerStats.UpdateScore();
+        }
+
+        if(other.tag == "Enemy" || other.tag == "enemyProjectile")
+        {
+            Vector2 expos = transform.position;
+            Destroy (gameObject);
+            Destroy (other.gameObject);
+
+            GameObject explosion = (GameObject)Instantiate(Explosion);
+            explosion.transform.position = expos;
+
+            }
+        }
+    }
