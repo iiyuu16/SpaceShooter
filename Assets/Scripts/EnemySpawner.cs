@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -12,16 +11,18 @@ public class EnemySpawner : MonoBehaviour
     public float yPosMax = 2.75f;
     public float yPosMin = -2.75f;
     float spawnInterval;
-    private int currentEnemies = 0;
+    public float difficultyMult = -1f;
 
+    private float timer = 0f;
+    private float difficultyIncreaseInterval = 15f; // Increase difficulty every x seconds
 
     void Awake()
     {
-        if(enemySpawner == null)
+        if (enemySpawner == null)
         {
             enemySpawner = this;
-        }    
-        else if(enemySpawner != this)
+        }
+        else if (enemySpawner != this)
         {
             Destroy(gameObject);
         }
@@ -35,15 +36,23 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         spawnInterval -= Time.deltaTime;
+        timer += Time.deltaTime;
 
-        if(spawnInterval <= 0)
+        if (timer >= difficultyIncreaseInterval)
+        {
+            difficultyMult += 0.1f;
+            timer = 0f;
+            Debug.Log("diff: "+ difficultyMult);
+        }
+
+        if (spawnInterval <= difficultyMult)
         {
             float spawnXPosition = Random.Range(xPosMin, xPosMax);
             float spawnYPosition = Random.Range(yPosMin, yPosMax);
 
-            GameObject enemyShip = (GameObject)Instantiate(enemyPrefab);
+            GameObject enemyShip = Instantiate(enemyPrefab);
             enemyShip.transform.position = new Vector2(spawnXPosition, spawnYPosition);
-        
+
             spawnInterval = Random.Range(1, 3);
         }
     }

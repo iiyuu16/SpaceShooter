@@ -38,6 +38,7 @@ public class ProjectileContoller : MonoBehaviour
         if (other.tag == "enemyProjectile")
         {
             Vector2 expos = transform.position;
+            GameController.gameController.PlaySFX2();
             Destroy(gameObject);
             Destroy(other.gameObject);
 
@@ -48,6 +49,7 @@ public class ProjectileContoller : MonoBehaviour
         if (other.tag == "Enemy")
         {
             Vector2 expos = transform.position;
+            GameController.gameController.PlaySFX1();
             Destroy (gameObject);
             Destroy (other.gameObject);
 

@@ -10,10 +10,14 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     public GameObject Projectile;
     public GameObject projectilePosition;
-    float fireInterval = .25f;
+    float fireInterval = .3f;
     float nextFire;
     public GameObject Explosion;
     public GameObject Clash;
+    public AudioSource shootSFX;
+    public bool isGameOver = false;
+    public GameObject RespawnPoint;
+
     void Awake()
     {
         if(playerController == null)
@@ -40,6 +44,7 @@ public class PlayerController : MonoBehaviour
             GameObject projectile = (GameObject)Instantiate (Projectile);
             projectile.transform.position = projectilePosition.transform.position;
             nextFire = fireInterval;
+            shootSFX.Play();
         }
 
         float x = Input.GetAxisRaw("Horizontal");
@@ -48,6 +53,7 @@ public class PlayerController : MonoBehaviour
         Vector2 direction = new Vector2(x, y).normalized;
 
         Move(direction);
+        
     }
 
     void Move(Vector2 direction)
@@ -55,8 +61,8 @@ public class PlayerController : MonoBehaviour
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
         Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
 
-        min.x = -6.78f;
-        max.x = 6.78f;
+        min.x = -10.2f;
+        max.x = 10.2f;
 
         min.y = -4.4f;
         max.y = 4.4f;
@@ -94,6 +100,7 @@ public class PlayerController : MonoBehaviour
         if(other.tag == "Enemy" || other.tag == "enemyProjectile")
         {
             PlayerStats.playerStats.playerLife--;
+            GameController.gameController.PlaySFX1();
 
             Vector2 expos = transform.position;
 
@@ -109,5 +116,15 @@ public class PlayerController : MonoBehaviour
             clash.transform.position = expos;
         }
 
+        if(PlayerStats.playerStats.playerLife > 0)
+        {
+            transform.position = RespawnPoint.transform.position;
+        }
+        else
+        {
+            GameController.gameController.GameOver();
+            isGameOver = true;
+            Destroy(gameObject);
+        }
     }
 }
