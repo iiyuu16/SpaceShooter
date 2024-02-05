@@ -61,8 +61,12 @@ public class PlayerController : MonoBehaviour
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
         Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
 
-        min.x = -10.2f;
-        max.x = 10.2f;
+        //fixed reso
+        min.x = -6.86f; 
+        max.x = 6.86f;
+
+/*      min.x = -10.2f;
+        max.x = 10.2f;*/
 
         min.y = -4.4f;
         max.y = 4.4f;
@@ -101,6 +105,8 @@ public class PlayerController : MonoBehaviour
         {
             PlayerStats.playerStats.playerLife--;
             GameController.gameController.PlaySFX1();
+            StartCoroutine(IFrameSprite(3f));
+            StartCoroutine(IFrames(3f));
 
             Vector2 expos = transform.position;
 
@@ -126,5 +132,31 @@ public class PlayerController : MonoBehaviour
             isGameOver = true;
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator IFrameSprite (float seconds)
+    {
+        BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
+        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        while (seconds > 0)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            yield return new WaitForSeconds(0.1f);
+            seconds -= 0.1f;
+
+        }
+
+        spriteRenderer.enabled = true;
+        boxCollider2D.enabled = true;
+    }
+
+    private IEnumerator IFrames(float seconds)
+    {
+        GetComponent<BoxCollider2D>().enabled = false;            
+        Debug.Log("immune");
+        yield return new WaitForSeconds(seconds);
+        GetComponent<BoxCollider2D>().enabled = true;
+        Debug.Log("not immune");
     }
 }
