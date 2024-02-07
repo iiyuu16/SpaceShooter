@@ -1,17 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     public static GameController gameController;
-    public AudioSource explosionSFX;
-    public AudioSource hitSFX;
-    public AudioSource gameOverSFX;
+
+    [SerializeField] AudioMixer audioMixer;
+    [SerializeField] AudioSource SFXSource;
+    [SerializeField] AudioSource BGSource;
+
+    public AudioClip menuBGM;
+    public AudioClip defaultBGM;
+    public AudioClip gameOverBGM;
+
+    public AudioClip explosionSFX;
+    public AudioClip hitSFX;
+    public AudioClip gameOverSFX;
+    public AudioClip shootSFX;
+    
     public GameObject gameOverScreen;
     public GameObject gamePauseScreen;
     private bool isPaused = false;
+
+    private void Start()
+    {
+        BGSource.clip = defaultBGM;
+        BGSource.Play();
+    }
+    public void PlayGameOverBGM()
+    {
+        BGSource.clip = gameOverBGM;
+        BGSource.Play();
+    }
 
     void Awake()
     {
@@ -33,22 +56,35 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void PlaySFX1()
+    public void PlayExplosion(AudioClip explosionSFX)
     {
-        explosionSFX.Play();
+        SFXSource.PlayOneShot(explosionSFX);
     }
 
-    public void PlaySFX2()
+    public void PlayHit(AudioClip hitSFX)
     {
-        hitSFX.Play();
+        SFXSource.PlayOneShot(hitSFX);
+    }
+
+    public void PlayShoot(AudioClip shootSFX)
+    {
+        
+        SFXSource.PlayOneShot(shootSFX, 0.25f);
     }
 
     public void GameOver()
     {
         EnemySpawner.enemySpawner.gameObject.SetActive(false);
         PlayerController.playerController.gameObject.SetActive(false);
+        PlayGameOverBGM();
+        GameOverSFX(gameOverSFX);
         gameOverScreen.SetActive(true);
-        gameOverSFX.Play();
+        
+    }
+
+    public void GameOverSFX(AudioClip gameOverSFX)
+    {
+        SFXSource.PlayOneShot(gameOverSFX);
     }
 
     public void Restart()
@@ -62,9 +98,11 @@ public class GameController : MonoBehaviour
         Application.Quit();
     }
 
-    public void MainMenu()
+    public void MainMenu(AudioClip menuBGM)
     {
         SceneManager.LoadScene("MainMenu");
+        BGSource.clip = menuBGM;
+        BGSource.Play();
     }
 
     public void PauseGame()

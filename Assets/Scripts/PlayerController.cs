@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,10 +15,11 @@ public class PlayerController : MonoBehaviour
     float nextFire;
     public GameObject Explosion;
     public GameObject Clash;
-    public AudioSource shootSFX;
+
     public bool isGameOver = false;
     public GameObject RespawnPoint;
 
+    public GameController gameController;
     void Awake()
     {
         if(playerController == null)
@@ -37,14 +39,15 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         nextFire -= Time.deltaTime;
         if(Input.GetKey(KeyCode.Space) && nextFire <= 0) {
+
             GameObject projectile = (GameObject)Instantiate (Projectile);
             projectile.transform.position = projectilePosition.transform.position;
             nextFire = fireInterval;
-            shootSFX.Play();
+            gameController.PlayShoot(gameController.shootSFX);
         }
 
         float x = Input.GetAxisRaw("Horizontal");
@@ -104,12 +107,12 @@ public class PlayerController : MonoBehaviour
         if(other.tag == "Enemy" || other.tag == "enemyProjectile")
         {
             PlayerStats.playerStats.playerLife--;
-            GameController.gameController.PlaySFX1();
+
             StartCoroutine(IFrameSprite(3f));
             StartCoroutine(IFrames(3f));
 
             Vector2 expos = transform.position;
-
+            gameController.PlayExplosion(gameController.explosionSFX);
             GameObject explosion = (GameObject)Instantiate(Explosion);
             explosion.transform.position = expos;
         }
@@ -117,7 +120,7 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "enemyProjectile")
         {
             Vector2 expos = transform.position;
-
+            gameController.PlayHit(gameController.hitSFX);
             GameObject clash = (GameObject)Instantiate(Clash);
             clash.transform.position = expos;
         }
@@ -128,7 +131,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            GameController.gameController.GameOver();
+            gameController.GameOver();
             isGameOver = true;
             Destroy(gameObject);
         }

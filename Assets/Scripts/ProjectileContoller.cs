@@ -7,11 +7,18 @@ public class ProjectileContoller : MonoBehaviour
     float speed;
     public GameObject Explosion;
     public GameObject Clash;
+    public GameController gameController;
 
     // Start is called before the first frame update
     void Start()
     {
         speed = 8f;
+    }
+
+    private void Awake()
+    {
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+
     }
 
     // Update is called once per frame
@@ -38,7 +45,7 @@ public class ProjectileContoller : MonoBehaviour
         if (other.tag == "enemyProjectile")
         {
             Vector2 expos = transform.position;
-            GameController.gameController.PlaySFX2();
+            gameController.PlayHit(gameController.hitSFX);
             Destroy(gameObject);
             Destroy(other.gameObject);
 
@@ -49,7 +56,7 @@ public class ProjectileContoller : MonoBehaviour
         if (other.tag == "Enemy")
         {
             Vector2 expos = transform.position;
-            GameController.gameController.PlaySFX1();
+            gameController.PlayExplosion(gameController.explosionSFX);
             Destroy (gameObject);
             Destroy (other.gameObject);
 
