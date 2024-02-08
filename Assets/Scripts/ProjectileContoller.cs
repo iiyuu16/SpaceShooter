@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileContoller : MonoBehaviour
@@ -7,7 +8,7 @@ public class ProjectileContoller : MonoBehaviour
     float speed;
     public GameObject Explosion;
     public GameObject Clash;
-    public GameController gameController;
+    GameController gameController;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +19,7 @@ public class ProjectileContoller : MonoBehaviour
     private void Awake()
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -39,7 +38,17 @@ public class ProjectileContoller : MonoBehaviour
     {
         if(other.tag == "Enemy")
         {
-            PlayerStats.playerStats.UpdateScore();
+            PlayerStats.playerStats.UpdateScore(500);
+        }
+
+        if (other.tag == "enemyProjectile")
+        {
+            PlayerStats.playerStats.UpdateScore(100);
+        }
+
+        if (other.tag == "Boss")
+        {
+            PlayerStats.playerStats.UpdateScore(5000);
         }
 
         if (other.tag == "enemyProjectile")
@@ -62,6 +71,6 @@ public class ProjectileContoller : MonoBehaviour
 
             GameObject explosion = (GameObject)Instantiate(Explosion);
             explosion.transform.position = expos;
-            }
         }
     }
+}

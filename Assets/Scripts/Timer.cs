@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 public class Timer : MonoBehaviour
 {
     bool timerActive = false;
     float currentTime;
-    public int startMin;
+    int startMin = 3;
     public TextMeshProUGUI currentTimeText;
 
     private void Awake()
@@ -25,9 +26,15 @@ public class Timer : MonoBehaviour
         if (timerActive)
         {
             currentTime -= Time.deltaTime; 
+            if(currentTime <= 0)
+            {
+                timerActive = false;
+                SceneManager.LoadScene("1P_BossLevel");
+                Debug.Log("times up");
+            }
         }
         TimeSpan time = TimeSpan.FromSeconds(currentTime);
-        currentTimeText.text = currentTime.ToString();
+        currentTimeText.text = time.Minutes.ToString() + ":" + time.Seconds.ToString();
     }
 
     public void StartTimer()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -41,22 +42,25 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        nextFire -= Time.deltaTime;
-        if(Input.GetKey(KeyCode.Space) && nextFire <= 0) {
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+        Vector2 direction = new Vector2(x, y).normalized;
 
-            GameObject projectile = (GameObject)Instantiate (Projectile);
+        Move(direction);
+        Fire();
+    }
+
+    void Fire()
+    {
+        nextFire -= Time.deltaTime;
+        if (Input.GetKey(KeyCode.Space) && nextFire <= 0)
+        {
+            GameObject projectile = (GameObject)Instantiate(Projectile);
             projectile.transform.position = projectilePosition.transform.position;
             nextFire = fireInterval;
             gameController.PlayShoot(gameController.shootSFX);
         }
 
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-
-        Vector2 direction = new Vector2(x, y).normalized;
-
-        Move(direction);
-        
     }
 
     void Move(Vector2 direction)
@@ -108,9 +112,7 @@ public class PlayerController : MonoBehaviour
         {
             PlayerStats.playerStats.playerLife--;
 
-            StartCoroutine(IFrameSprite(3f));
-            StartCoroutine(IFrames(3f));
-
+            Destroy(other.gameObject);
             Vector2 expos = transform.position;
             gameController.PlayExplosion(gameController.explosionSFX);
             GameObject explosion = (GameObject)Instantiate(Explosion);
@@ -119,21 +121,40 @@ public class PlayerController : MonoBehaviour
 
         if (other.tag == "enemyProjectile")
         {
+            PlayerStats.playerStats.playerLife--;
+
             Vector2 expos = transform.position;
             gameController.PlayHit(gameController.hitSFX);
             GameObject clash = (GameObject)Instantiate(Clash);
             clash.transform.position = expos;
         }
 
-        if(PlayerStats.playerStats.playerLife > 0)
+        if (other.tag == "Boss")
         {
+            PlayerStats.playerStats.playerLife--;
+            Vector2 expos = transform.position;
+            gameController.PlayExplosion(gameController.explosionSFX);
+            GameObject explosion = (GameObject)Instantiate(Explosion);
+            explosion.transform.position = expos;
+        }
+
+        if (PlayerStats.playerStats.playerLife > 0)
+        {
+            StartCoroutine(IFrameSprite(3f));
+            StartCoroutine(IFrames(3f));
             transform.position = RespawnPoint.transform.position;
         }
         else
         {
-            gameController.GameOver();
-            isGameOver = true;
-            Destroy(gameObject);
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            if(currentSceneName == "1P_SpaceShooter")
+            {
+                gameController.GameOver1();
+            }
+            else if(currentSceneName == "1P_BossLevel")
+            {
+                gameController.GameOver2();
+            }
         }
     }
 

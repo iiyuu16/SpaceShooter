@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 80}
-  m_SizeDelta: {x: 240, y: 50}
+  m_AnchoredPosition: {x: 0, y: 75}
+  m_SizeDelta: {x: 300, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &173724883
 MonoBehaviour:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: generic space shooter
+  m_text: mission complete!!!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ecd9c9c8969630e40b543dec96ea0582, type: 2}
   m_sharedMaterial: {fileID: 1468905091352538727, guid: ecd9c9c8969630e40b543dec96ea0582, type: 2}
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: play
+  m_text: main menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ecd9c9c8969630e40b543dec96ea0582, type: 2}
   m_sharedMaterial: {fileID: 1468905091352538727, guid: ecd9c9c8969630e40b543dec96ea0582, type: 2}
@@ -702,9 +702,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2097466419}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 1705856109}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -949,7 +949,7 @@ RectTransform:
   m_AnchoredPosition: {x: -0.0010375977, y: 0.0005493164}
   m_SizeDelta: {x: -308.82, y: -205.88}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1747646942
+--- !u!1 &1705856106
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -957,9 +957,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1747646946}
-  - component: {fileID: 1747646944}
-  - component: {fileID: 1747646943}
+  - component: {fileID: 1705856110}
+  - component: {fileID: 1705856109}
+  - component: {fileID: 1705856108}
+  - component: {fileID: 1705856107}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -967,13 +968,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!82 &1747646943
+--- !u!82 &1705856107
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747646942}
+  m_GameObject: {fileID: 1705856106}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -2445909967736330747, guid: 9c885a1f91edbc34687b1eca18949406, type: 2}
@@ -1063,13 +1064,13 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &1747646944
+--- !u!82 &1705856108
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747646942}
+  m_GameObject: {fileID: 1705856106}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4289982315285940359, guid: 9c885a1f91edbc34687b1eca18949406, type: 2}
@@ -1159,13 +1160,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!4 &1747646946
+--- !u!114 &1705856109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705856106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a035b5386e7c6464aa4f3e37026a4eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 9c885a1f91edbc34687b1eca18949406, type: 2}
+  SFXSource: {fileID: 1705856107}
+  BGSource: {fileID: 1705856108}
+  menuBGM: {fileID: 8300000, guid: 35967e8a4dfb1664e9b066939272c0a4, type: 3}
+  defaultBGM: {fileID: 8300000, guid: 559c232a43caebe41870ce54786f604e, type: 3}
+  gameOverBGM: {fileID: 8300000, guid: 1f2ad53bacc245642854dbdc8ea71a9b, type: 3}
+  explosionSFX: {fileID: 8300000, guid: eeac7ff7e4ad44587b11429a7e7b8fc1, type: 3}
+  hitSFX: {fileID: 8300000, guid: 5a734bcdccebe4d0aa169e4bc43d5210, type: 3}
+  gameOverSFX: {fileID: 8300000, guid: 8a90af255840f1048a4f84d5afb08d7b, type: 3}
+  shootSFX: {fileID: 8300000, guid: 13463c260b1494840805e2cc234a0dd0, type: 3}
+  gameOverScreen: {fileID: 0}
+  gamePauseScreen: {fileID: 0}
+  timer: {fileID: 0}
+--- !u!4 &1705856110
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747646942}
+  m_GameObject: {fileID: 1705856106}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1346,7 +1372,6 @@ GameObject:
   - component: {fileID: 2097466417}
   - component: {fileID: 2097466416}
   - component: {fileID: 2097466415}
-  - component: {fileID: 2097466419}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1437,22 +1462,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &2097466419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097466414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5daec24263b36124b8f65eb2ec9a8356, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 9c885a1f91edbc34687b1eca18949406, type: 2}
-  BGSource: {fileID: 1747646944}
-  menuBGM: {fileID: 8300000, guid: 35967e8a4dfb1664e9b066939272c0a4, type: 3}
-  mainMenuScreen: {fileID: 1403051848}
 --- !u!1 &2111457244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,9 +1545,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2097466419}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 1705856109}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1595,4 +1604,4 @@ SceneRoots:
   - {fileID: 571036882}
   - {fileID: 2097466418}
   - {fileID: 1867506903}
-  - {fileID: 1747646946}
+  - {fileID: 1705856110}

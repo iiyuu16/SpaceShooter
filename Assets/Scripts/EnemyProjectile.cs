@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    float speed;
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {
-        speed = 10f;
+        speed = 5f;
     }
 
     // Update is called once per frame

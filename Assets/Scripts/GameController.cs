@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour
     
     public GameObject gameOverScreen;
     public GameObject gamePauseScreen;
+    public GameObject timer;
+    private Timer time;
     private bool isPaused = false;
 
     private void Start()
@@ -68,18 +70,28 @@ public class GameController : MonoBehaviour
 
     public void PlayShoot(AudioClip shootSFX)
     {
-        
         SFXSource.PlayOneShot(shootSFX, 0.25f);
     }
 
-    public void GameOver()
+    public void GameOver1()
     {
         EnemySpawner.enemySpawner.gameObject.SetActive(false);
         PlayerController.playerController.gameObject.SetActive(false);
         PlayGameOverBGM();
         GameOverSFX(gameOverSFX);
         gameOverScreen.SetActive(true);
-        
+        timer.SetActive(false);
+        time.StopTimer();
+    }
+
+    public void GameOver2()
+    {
+        EnemySpawner.enemySpawner.gameObject.SetActive(false);
+        Boss.boss.gameObject.SetActive(false);
+        PlayerController.playerController.gameObject.SetActive(false);
+        PlayGameOverBGM();
+        GameOverSFX(gameOverSFX);
+        gameOverScreen.SetActive(true);
     }
 
     public void GameOverSFX(AudioClip gameOverSFX)
@@ -98,7 +110,7 @@ public class GameController : MonoBehaviour
         Application.Quit();
     }
 
-    public void MainMenu(AudioClip menuBGM)
+    public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
         BGSource.clip = menuBGM;

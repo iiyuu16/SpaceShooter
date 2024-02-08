@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1098492430532061648}
   m_Layer: 0
   m_Name: ProjectileHero
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,4 +195,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Explosion: {fileID: 7697372343771307511, guid: 27dc6a3b7fadf214c982be12722c7e63, type: 3}
   Clash: {fileID: 4123556786632626310, guid: 2a66b95a2e4a40f4ab30471f50bee939, type: 3}
-  gameController: {fileID: 0}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -38,11 +39,16 @@ public class PlayerStats : MonoBehaviour
         UpdateLife();
     }
 
-    public void UpdateScore()
+    public void UpdateScore(int add)
     {
-        score += 100;
+        score += add;
         string scoreStr = string.Format("{0:0000000}", score);
         scoreText.text = "Score: " +scoreStr;
+    }
+
+    public void addScore(int score)
+    {
+        score += score;
     }
 
     void UpdateLife()
