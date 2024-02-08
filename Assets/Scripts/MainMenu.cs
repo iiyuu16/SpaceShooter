@@ -30,9 +30,14 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void start_1P()
     {
         SceneManager.LoadScene("1P_SpaceShooter");
+    }
+
+    public void start_2P()
+    {
+        SceneManager.LoadScene("2P_SpaceShooter");
     }
 
     public void QuitGame()

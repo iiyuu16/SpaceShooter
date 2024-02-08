@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 9123188}
   m_Layer: 0
   m_Name: PlayerStats
-  m_TagString: Untagged
+  m_TagString: PlayerStats
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2282,7 +2282,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 900, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2392,7 +2392,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3 min til destination
+  m_text: 3 mins til destination
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d20c7300675b98043ae9d299770aab3a, type: 2}
   m_sharedMaterial: {fileID: -1048038877465748946, guid: d20c7300675b98043ae9d299770aab3a, type: 2}
@@ -3627,8 +3627,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
+  m_HorizontalAxis: HorizontalP1
+  m_VerticalAxis: VerticalP1
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10

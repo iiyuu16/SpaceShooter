@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     public float difficultyMult = -1f;
 
     private float timer = 0f;
-    private float difficultyIncreaseInterval = 5f; // Increase difficulty every x seconds
+    private float difficultyIncreaseInterval = 8f; // Increase difficulty every x seconds
 
     void Awake()
     {

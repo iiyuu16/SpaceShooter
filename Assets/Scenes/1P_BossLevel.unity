@@ -766,8 +766,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
+  m_HorizontalAxis: HorizontalP1
+  m_VerticalAxis: VerticalP1
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
@@ -879,7 +879,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 900, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -4132,7 +4132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7762849889557211161, guid: 958f436d5901f8948b626d70cf7d8859, type: 3}
       propertyPath: bossHP
-      value: 5
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 7762849889557211161, guid: 958f436d5901f8948b626d70cf7d8859, type: 3}
       propertyPath: enemyProj4

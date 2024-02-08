@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7093430271608110408}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyProjectilePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 2197158548225396272}
   - component: {fileID: 7762849889557211161}
   - component: {fileID: 5507847320890568662}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1794702702922331170}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyProjectilePos (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4586011901221240135}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyProjectilePos (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8862753818943316729}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyProjectilePos (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

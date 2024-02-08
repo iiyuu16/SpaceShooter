@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
 
     public AudioClip menuBGM;
     public AudioClip defaultBGM;
+    public AudioClip bossBGM;
     public AudioClip gameOverBGM;
 
     public AudioClip explosionSFX;
@@ -35,6 +36,12 @@ public class GameController : MonoBehaviour
     public void PlayGameOverBGM()
     {
         BGSource.clip = gameOverBGM;
+        BGSource.Play();
+    }
+
+    public void PlayBossBGM()
+    {
+        BGSource.clip = bossBGM;
         BGSource.Play();
     }
 
@@ -73,10 +80,10 @@ public class GameController : MonoBehaviour
         SFXSource.PlayOneShot(shootSFX, 0.25f);
     }
 
-    public void GameOver1()
+    public void GameOver1_1P()
     {
         EnemySpawner.enemySpawner.gameObject.SetActive(false);
-        PlayerController.playerController.gameObject.SetActive(false);
+        PlayerController1.playerController.gameObject.SetActive(false);
         PlayGameOverBGM();
         GameOverSFX(gameOverSFX);
         gameOverScreen.SetActive(true);
@@ -84,11 +91,34 @@ public class GameController : MonoBehaviour
         time.StopTimer();
     }
 
-    public void GameOver2()
+    public void GameOver2_1P()
     {
         EnemySpawner.enemySpawner.gameObject.SetActive(false);
         Boss.boss.gameObject.SetActive(false);
-        PlayerController.playerController.gameObject.SetActive(false);
+        PlayerController1.playerController.gameObject.SetActive(false);
+        PlayGameOverBGM();
+        GameOverSFX(gameOverSFX);
+        gameOverScreen.SetActive(true);
+    }
+
+    public void GameOver1_2P()
+    {
+        EnemySpawner.enemySpawner.gameObject.SetActive(false);
+        PlayerController1.playerController.gameObject.SetActive(false);
+        PlayerController2.playerController.gameObject.SetActive(false);
+        PlayGameOverBGM();
+        GameOverSFX(gameOverSFX);
+        gameOverScreen.SetActive(true);
+        timer.SetActive(false);
+        time.StopTimer();
+    }
+
+    public void GameOver2_2P()
+    {
+        EnemySpawner.enemySpawner.gameObject.SetActive(false);
+        Boss.boss.gameObject.SetActive(false);
+        PlayerController1.playerController.gameObject.SetActive(false);
+        PlayerController2.playerController.gameObject.SetActive(false);
         PlayGameOverBGM();
         GameOverSFX(gameOverSFX);
         gameOverScreen.SetActive(true);
@@ -97,6 +127,18 @@ public class GameController : MonoBehaviour
     public void GameOverSFX(AudioClip gameOverSFX)
     {
         SFXSource.PlayOneShot(gameOverSFX);
+    }
+
+    public void BossBattle_1P()
+    {
+        PlayBossBGM();
+        SceneManager.LoadScene("1P_BossLevel");
+    }
+
+    public void BossBattle_2P()
+    {
+        PlayBossBGM();
+        SceneManager.LoadScene("2P_BossLevel");
     }
 
     public void Restart()

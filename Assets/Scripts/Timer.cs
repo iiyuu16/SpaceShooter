@@ -29,7 +29,17 @@ public class Timer : MonoBehaviour
             if(currentTime <= 0)
             {
                 timerActive = false;
-                SceneManager.LoadScene("1P_BossLevel");
+
+                string currentSceneName = SceneManager.GetActiveScene().name;
+                if (currentSceneName == "1P_SpaceShooter")
+                {
+                    GameController.gameController.BossBattle_1P();
+                }
+                else if (currentSceneName == "2P_SpaceShooter")
+                {
+                    GameController.gameController.BossBattle_2P();
+                }
+
                 Debug.Log("times up");
             }
         }
