@@ -53,7 +53,7 @@ public class PlayerController2 : MonoBehaviour
     void Fire()
     {
         nextFire -= Time.deltaTime;
-        if (Input.GetKey(KeyCode.Keypad0) && nextFire <= 0)
+        if ((Input.GetKey(KeyCode.Keypad0)) || (Input.GetKey(KeyCode.RightShift)) && nextFire <= 0)
         {
             GameObject projectile = (GameObject)Instantiate(Projectile);
             projectile.transform.position = projectilePosition.transform.position;
@@ -111,7 +111,7 @@ public class PlayerController2 : MonoBehaviour
         if(other.tag == "Enemy" || other.tag == "enemyProjectile")
         {
             PlayerStats2.playerStats.playerLife--;
-
+            HitByEnemy();
             Destroy(other.gameObject);
             Vector2 expos = transform.position;
             gameController.PlayExplosion(gameController.explosionSFX);
@@ -130,16 +130,33 @@ public class PlayerController2 : MonoBehaviour
         if (other.tag == "Boss")
         {
             PlayerStats2.playerStats.playerLife--;
+            HitByEnemy();
             Vector2 expos = transform.position;
             gameController.PlayExplosion(gameController.explosionSFX);
             GameObject explosion = (GameObject)Instantiate(Explosion);
             explosion.transform.position = expos;
         }
 
+        if (other.tag == "HP" && (PlayerStats2.playerStats.playerLife < 3))
+        {
+            Debug.Log("p2gotHP");
+            PlayerStats2.playerStats.playerLife++;
+            gameController.PlayItem(gameController.itemSFX);
+        }
+
+
+        if (other.tag == "INVI")
+        {
+            Debug.Log("p2gotInvi");
+            gameController.PlayItem(gameController.itemSFX);
+            ImmunityMode();
+        }
+    }
+    public void HitByEnemy()
+    {
         if (PlayerStats2.playerStats.playerLife > 0)
         {
-            StartCoroutine(IFrameSprite(3f));
-            StartCoroutine(IFrames(3f));
+            ImmunityMode();
             transform.position = RespawnPoint.transform.position;
         }
         else
@@ -162,6 +179,12 @@ public class PlayerController2 : MonoBehaviour
                 gameController.GameOver2_2P();
             }
         }
+    }
+
+    public void ImmunityMode()
+    {
+        StartCoroutine(IFrameSprite(8f));
+        StartCoroutine(IFrames(8f));
     }
 
     private IEnumerator IFrameSprite (float seconds)

@@ -294,6 +294,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54928866}
   m_CullTransparentMesh: 1
+--- !u!1 &165970602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 165970604}
+  - component: {fileID: 165970603}
+  m_Layer: 0
+  m_Name: IemSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &165970603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165970602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b2365334eb27c4b937ca071ad2ccb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HPPrefab: {fileID: 6396998471361650415, guid: 857ca9437b19dd74a967b8a5fff033f6, type: 3}
+  shieldPrefab: {fileID: 2379749254590466714, guid: 70f600a8bbdb7db4aa5b6cbc4105756e, type: 3}
+  xPosMax: 9
+  xPosMin: 5
+  yPosMax: 2.75
+  yPosMin: -2.75
+  spawnInterval: 45
+--- !u!4 &165970604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165970602}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &248861186
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,11 +460,13 @@ MonoBehaviour:
   BGSource: {fileID: 279261674}
   menuBGM: {fileID: 8300000, guid: 35967e8a4dfb1664e9b066939272c0a4, type: 3}
   defaultBGM: {fileID: 8300000, guid: 559c232a43caebe41870ce54786f604e, type: 3}
+  bossBGM: {fileID: 8300000, guid: fc5af015011ea3745b7f78ea1dd1049f, type: 3}
   gameOverBGM: {fileID: 8300000, guid: 1f2ad53bacc245642854dbdc8ea71a9b, type: 3}
   explosionSFX: {fileID: 8300000, guid: eeac7ff7e4ad44587b11429a7e7b8fc1, type: 3}
   hitSFX: {fileID: 8300000, guid: 5a734bcdccebe4d0aa169e4bc43d5210, type: 3}
   gameOverSFX: {fileID: 8300000, guid: 8a90af255840f1048a4f84d5afb08d7b, type: 3}
   shootSFX: {fileID: 8300000, guid: 13463c260b1494840805e2cc234a0dd0, type: 3}
+  itemSFX: {fileID: 8300000, guid: 7104f83247c57e6469fdb2864e9dab68, type: 3}
   gameOverScreen: {fileID: 2071385528}
   gamePauseScreen: {fileID: 284029320}
   timer: {fileID: 960009846}
@@ -1805,7 +1858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7762849889557211161, guid: 958f436d5901f8948b626d70cf7d8859, type: 3}
       propertyPath: bossHP
-      value: 300
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 7939268182421953878, guid: 958f436d5901f8948b626d70cf7d8859, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4847,3 +4900,4 @@ SceneRoots:
   - {fileID: 1087138287}
   - {fileID: 1211769824}
   - {fileID: 966571774}
+  - {fileID: 165970604}

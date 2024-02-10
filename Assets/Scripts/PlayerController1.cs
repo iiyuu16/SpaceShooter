@@ -60,7 +60,6 @@ public class PlayerController1 : MonoBehaviour
             nextFire = fireInterval;
             gameController.PlayShoot(gameController.shootSFX);
         }
-
     }
 
     void Move(Vector2 direction)
@@ -111,7 +110,7 @@ public class PlayerController1 : MonoBehaviour
         if(other.tag == "Enemy" || other.tag == "enemyProjectile")
         {
             PlayerStats1.playerStats.playerLife--;
-
+            HitByEnemy();
             Destroy(other.gameObject);
             Vector2 expos = transform.position;
             gameController.PlayExplosion(gameController.explosionSFX);
@@ -130,26 +129,44 @@ public class PlayerController1 : MonoBehaviour
         if (other.tag == "Boss")
         {
             PlayerStats1.playerStats.playerLife--;
+            HitByEnemy();
             Vector2 expos = transform.position;
             gameController.PlayExplosion(gameController.explosionSFX);
             GameObject explosion = (GameObject)Instantiate(Explosion);
             explosion.transform.position = expos;
         }
 
+        if(other.tag == "HP" && (PlayerStats1.playerStats.playerLife < 3))
+        {
+            Debug.Log("p1gotHP");
+            PlayerStats1.playerStats.playerLife++;
+            gameController.PlayItem(gameController.itemSFX);
+        }
+
+
+        if (other.tag == "INVI")
+        {
+            Debug.Log("p1gotInvi");
+            gameController.PlayItem(gameController.itemSFX);
+            ImmunityMode();
+        }
+    }
+
+    public void HitByEnemy()
+    {
         if (PlayerStats1.playerStats.playerLife > 0)
         {
-            StartCoroutine(IFrameSprite(3f));
-            StartCoroutine(IFrames(3f));
+            ImmunityMode();
             transform.position = RespawnPoint.transform.position;
         }
         else
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
-            if(currentSceneName == "1P_SpaceShooter")
+            if (currentSceneName == "1P_SpaceShooter")
             {
                 gameController.GameOver1_1P();
             }
-            else if(currentSceneName == "1P_BossLevel")
+            else if (currentSceneName == "1P_BossLevel")
             {
                 gameController.GameOver2_1P();
             }
@@ -162,6 +179,12 @@ public class PlayerController1 : MonoBehaviour
                 gameController.GameOver2_2P();
             }
         }
+    }
+
+    private void ImmunityMode()
+    {
+        StartCoroutine(IFrameSprite(8f));
+        StartCoroutine(IFrames(8f));
     }
 
     private IEnumerator IFrameSprite (float seconds)

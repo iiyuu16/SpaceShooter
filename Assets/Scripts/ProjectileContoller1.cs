@@ -69,9 +69,5 @@ public class ProjectileContoller1 : MonoBehaviour
             GameObject explosion = (GameObject)Instantiate(Explosion);
             explosion.transform.position = expos;
         }
-        else
-        {
-            Debug.Log("p2 hit");
-        }
     }
 }

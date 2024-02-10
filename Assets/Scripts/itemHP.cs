@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class EnemyProjectile : MonoBehaviour
+public class ItemHP : MonoBehaviour
 {
     public float speed;
+
     // Start is called before the first frame update
     void Start()
     {
-        speed = 5f;
+        speed = 1.5f;
     }
 
     // Update is called once per frame
@@ -30,8 +30,13 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("gotPlayer");
+            DelayDestroy(3f);
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator DelayDestroy(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
     }
 }

@@ -218,7 +218,7 @@ MonoBehaviour:
   ProjectilePostition4: {fileID: 1137979927025238467, guid: 8b977be830f03f745b966db0487b14cf, type: 3}
   Explosion: {fileID: 7697372343771307511, guid: 27dc6a3b7fadf214c982be12722c7e63, type: 3}
   Clash: {fileID: 4123556786632626310, guid: 2a66b95a2e4a40f4ab30471f50bee939, type: 3}
-  bossHP: 300
+  bossHP: 150
   bossPos: 4
 --- !u!95 &5507847320890568662
 Animator:

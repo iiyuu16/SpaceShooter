@@ -8,6 +8,8 @@ TagManager:
   - enemyProjectile
   - Boss
   - PlayerStats
+  - HP
+  - INVI
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Enemy
   - enemyProjectile
   - playerProjectile
-  - 
+  - Item
   - 
   - 
   - 

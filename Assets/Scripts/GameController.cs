@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     public AudioClip hitSFX;
     public AudioClip gameOverSFX;
     public AudioClip shootSFX;
+    public AudioClip itemSFX;
     
     public GameObject gameOverScreen;
     public GameObject gamePauseScreen;
@@ -78,6 +79,11 @@ public class GameController : MonoBehaviour
     public void PlayShoot(AudioClip shootSFX)
     {
         SFXSource.PlayOneShot(shootSFX, 0.25f);
+    }
+
+    public void PlayItem(AudioClip itemSFX)
+    {
+        SFXSource.PlayOneShot(itemSFX, 0.3f);
     }
 
     public void GameOver1_1P()

@@ -29,11 +29,6 @@ public class PlayerStats1 : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         UpdateLife();
