@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -11,11 +12,10 @@ public class EnemySpawner : MonoBehaviour
     public float yPosMax = 2.75f;
     public float yPosMin = -2.75f;
     float spawnInterval;
-    public float difficultyMult = -1f;
-
+    public float difficultyMult = 0f;
     private float timer = 0f;
     private float difficultyIncreaseInterval = 8f; // Increase difficulty every x seconds
-
+    float adder = 0.5f;
     void Awake()
     {
         if (enemySpawner == null)
@@ -47,8 +47,8 @@ public class EnemySpawner : MonoBehaviour
 
         if (spawnInterval <= difficultyMult)
         {
-            float spawnXPosition = Random.Range(xPosMin, xPosMax);
-            float spawnYPosition = Random.Range(yPosMin, yPosMax);
+            float spawnXPosition = Random.Range(xPosMin + adder, xPosMax + adder);
+            float spawnYPosition = Random.Range(yPosMin + adder, yPosMax + adder);
 
             GameObject enemyShip = Instantiate(enemyPrefab);
             enemyShip.transform.position = new Vector2(spawnXPosition, spawnYPosition);

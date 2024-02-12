@@ -118,14 +118,6 @@ public class PlayerController1 : MonoBehaviour
             explosion.transform.position = expos;
         }
 
-        if (other.tag == "enemyProjectile")
-        {
-            Vector2 expos = transform.position;
-            gameController.PlayHit(gameController.hitSFX);
-            GameObject clash = (GameObject)Instantiate(Clash);
-            clash.transform.position = expos;
-        }
-
         if (other.tag == "Boss")
         {
             PlayerStats1.playerStats.playerLife--;
@@ -136,7 +128,7 @@ public class PlayerController1 : MonoBehaviour
             explosion.transform.position = expos;
         }
 
-        if(other.tag == "HP" && (PlayerStats1.playerStats.playerLife < 3))
+        if (other.tag == "HP" && (PlayerStats1.playerStats.playerLife < 3))
         {
             Debug.Log("p1gotHP");
             PlayerStats1.playerStats.playerLife++;
@@ -183,8 +175,8 @@ public class PlayerController1 : MonoBehaviour
 
     private void ImmunityMode()
     {
-        StartCoroutine(IFrameSprite(8f));
-        StartCoroutine(IFrames(8f));
+        StartCoroutine(IFrameSprite(5f));
+        StartCoroutine(IFrames(5f));
     }
 
     private IEnumerator IFrameSprite (float seconds)
@@ -195,8 +187,8 @@ public class PlayerController1 : MonoBehaviour
         while (seconds > 0)
         {
             spriteRenderer.enabled = !spriteRenderer.enabled;
-            yield return new WaitForSeconds(0.1f);
-            seconds -= 0.1f;
+            yield return new WaitForSeconds(0.05f);
+            seconds -= 0.05f;
 
         }
 

@@ -325,8 +325,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HPPrefab: {fileID: 6396998471361650415, guid: 857ca9437b19dd74a967b8a5fff033f6, type: 3}
   shieldPrefab: {fileID: 2379749254590466714, guid: 70f600a8bbdb7db4aa5b6cbc4105756e, type: 3}
-  xPosMax: 9
-  xPosMin: 5
+  xPosMax: 12
+  xPosMin: 10
   yPosMax: 2.75
   yPosMin: -2.75
   spawnInterval: 45
@@ -883,6 +883,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343172256}
   m_CullTransparentMesh: 1
+--- !u!1 &355106892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 355106894}
+  - component: {fileID: 355106893}
+  m_Layer: 0
+  m_Name: AsteroidSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &355106893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355106892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7a045a022f316b43852f1b62ea5b626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidPrefab1: {fileID: 8106418651671238353, guid: bcdd79745aab28b45ab0b6e526fc7003, type: 3}
+  asteroidPrefab2: {fileID: 1084421164430495097, guid: 68de9be8cc5cf8d4a9a0a7e18f43605b, type: 3}
+  xPosMax: 12
+  xPosMin: 10
+  yPosMax: 2.75
+  yPosMin: -2.75
+  spawnInterval: 15
+  spawnCount: 5
+--- !u!4 &355106894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355106892}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &452604745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4068,11 +4120,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 5582841597301769778, guid: 7f3cb9d07504dcb42be2032bc7a04996, type: 3}
-  xPosMax: 10
-  xPosMin: 8
+  xPosMax: 12
+  xPosMin: 10
   yPosMax: 4.5
   yPosMin: -4.5
-  difficultyMult: -1
+  difficultyMult: 0
 --- !u!4 &1726037433
 Transform:
   m_ObjectHideFlags: 0
@@ -4885,7 +4937,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1399179084}
-  - {fileID: 1726037433}
   - {fileID: 2106994163}
   - {fileID: 1048812767}
   - {fileID: 1644885878}
@@ -4901,3 +4952,5 @@ SceneRoots:
   - {fileID: 1211769824}
   - {fileID: 966571774}
   - {fileID: 165970604}
+  - {fileID: 1726037433}
+  - {fileID: 355106894}

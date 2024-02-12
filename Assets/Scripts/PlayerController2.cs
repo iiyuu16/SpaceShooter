@@ -53,7 +53,7 @@ public class PlayerController2 : MonoBehaviour
     void Fire()
     {
         nextFire -= Time.deltaTime;
-        if ((Input.GetKey(KeyCode.Keypad0)) || (Input.GetKey(KeyCode.RightShift)) && nextFire <= 0)
+        if (Input.GetKey(KeyCode.RightShift) && nextFire <= 0)
         {
             GameObject projectile = (GameObject)Instantiate(Projectile);
             projectile.transform.position = projectilePosition.transform.position;

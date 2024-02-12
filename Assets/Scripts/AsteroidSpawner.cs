@@ -1,28 +1,27 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class ItemSpawner : MonoBehaviour
+public class AsteroidSpawner : MonoBehaviour
 {
-    public GameObject HPPrefab;
-    public GameObject shieldPrefab;
+    public GameObject asteroidPrefab1;
+    public GameObject asteroidPrefab2;
 
-    public static ItemSpawner itemSpawner;
+    public static AsteroidSpawner asteroidSpawner;
 
     public float xPosMax = 7f;
     public float xPosMin = 5f;
     public float yPosMax = 2.75f;
     public float yPosMin = -2.75f;
-    public float spawnInterval = 5f;
+    public float spawnInterval = 12f;
+    public int spawnCount = 5;
     float adder = 0.5f;
-
     void Awake()
     {
-        if (itemSpawner == null)
+        if (asteroidSpawner == null)
         {
-            itemSpawner = this;
+            asteroidSpawner = this;
         }
-        else if (itemSpawner != this)
+        else if (asteroidSpawner != this)
         {
             Destroy(gameObject);
         }
@@ -30,16 +29,16 @@ public class ItemSpawner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnItems());
+        StartCoroutine(SpawnAsteroids());
     }
 
-    IEnumerator SpawnItems()
+    IEnumerator SpawnAsteroids()
     {
         while (true)
         {
             yield return new WaitForSeconds(spawnInterval);
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < spawnCount; i++)
             {
                 SpawnRandomItem();
             }
@@ -48,10 +47,10 @@ public class ItemSpawner : MonoBehaviour
 
     void SpawnRandomItem()
     {
-        float spawnXPosition = Random.Range(xPosMin + adder, xPosMax + adder);
+        float spawnXPosition = Random.Range(xPosMin + adder , xPosMax + adder);
         float spawnYPosition = Random.Range(yPosMin + adder, yPosMax + adder);
 
-        GameObject itemPrefab = Random.Range(0f, 1f) < 0.5f ? HPPrefab : shieldPrefab;
+        GameObject itemPrefab = Random.Range(0f, 1f) < 0.5f ? asteroidPrefab1 : asteroidPrefab2;
 
         GameObject item = Instantiate(itemPrefab, new Vector3(spawnXPosition, spawnYPosition, 0f), Quaternion.identity);
     }
