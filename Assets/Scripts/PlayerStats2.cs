@@ -46,7 +46,7 @@ public class PlayerStats2 : MonoBehaviour
         score += score;
     }
 
-    void UpdateLife()
+    public void UpdateLife()
     {
         if (playerLife > maxLife)
         {
@@ -61,7 +61,7 @@ public class PlayerStats2 : MonoBehaviour
             }
             else
             {
-                life[i].sprite = emptyLife;
+                life[i].sprite = emptyLife; 
             }
 
             if(i < maxLife)
@@ -73,5 +73,10 @@ public class PlayerStats2 : MonoBehaviour
                 life[i].enabled = false;
             }
         }
+    }
+
+    public void addLife()
+    {
+        playerLife++;
     }
 }

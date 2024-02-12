@@ -137,10 +137,10 @@ public class PlayerController2 : MonoBehaviour
             explosion.transform.position = expos;
         }
 
-        if (other.tag == "HP" && (PlayerStats2.playerStats.playerLife < 3))
+        if (other.tag == "HP")
         {
-            Debug.Log("p2gotHP");
-            PlayerStats2.playerStats.playerLife++;
+            PlayerStats2.playerStats.addLife();
+            PlayerStats2.playerStats.UpdateLife();
             gameController.PlayItem(gameController.itemSFX);
         }
 

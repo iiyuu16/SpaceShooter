@@ -120,7 +120,7 @@ public class PlayerController1 : MonoBehaviour
 
         if (other.tag == "Boss")
         {
-            PlayerStats1.playerStats.playerLife--;
+            PlayerStats1.playerStats.playerLife--;  
             HitByEnemy();
             Vector2 expos = transform.position;
             gameController.PlayExplosion(gameController.explosionSFX);
@@ -128,13 +128,12 @@ public class PlayerController1 : MonoBehaviour
             explosion.transform.position = expos;
         }
 
-        if (other.tag == "HP" && (PlayerStats1.playerStats.playerLife < 3))
+        if (other.tag == "HP")
         {
-            Debug.Log("p1gotHP");
-            PlayerStats1.playerStats.playerLife++;
+            PlayerStats1.playerStats.addLife();
+            PlayerStats1.playerStats.UpdateLife();
             gameController.PlayItem(gameController.itemSFX);
         }
-
 
         if (other.tag == "INVI")
         {
